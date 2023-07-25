@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Canvas Example</title>
+    <style>
+      canvas
+        {
+          border : 5px solid black
+        }
+    </style>
+  </head>
+  <body bgcolor="bbd0ff"><center>
+  <header>
+    <h1>Canvas</h1>
+      
+    </header>
+    <article>
+      <h6>Draw Your Signature using mouse.</h6>
+    
+      <canvas  id="myCanvas" width="600" height="400"
+        onmousedown="startDrawing(event)"
+        onmousemove="drawLine(event)"
+        onmouseup="stopDrawing(event)">
+      </canvas>
+    </article>
+    <script>
+    var canvas =document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+    var isDrawing = false;
+    function startDrawing(event)
+    {
+      isdrawing=true;
+      var x = event.clientX - canvas.offsetLeft;
+      var y = event.clientY - canvas.offsetTop;
+      ctx.beginPath();
+      ctx.moveTo(x,y);
+      
+    }
+    function drawLine(event)
+    {
+      if(isdrawing)
+      {
+        var x = event.clientX-canvas.offsetLeft;
+        var y = event.clientY-canvas.offsetTop;
+        ctx.lineWidth=1;
+        ctx.strokeStyle="yellow";
+        ctx.lineTo(x,y);
+        ctx.stroke();
+
+      }
+    }
+    function stopDrawing(event)
+    {
+      isdrawing = false;
+    }
+    </script>
+    </center>
+    </body>
+</html>
